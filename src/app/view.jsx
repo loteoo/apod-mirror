@@ -20,7 +20,7 @@ export const view = state => (
   </div>
 )
 
-
+// Pictude viewer
 const Picture = ({picture, endReached}) => (
   <div className="picture">
     <aside>
@@ -41,9 +41,3 @@ const Picture = ({picture, endReached}) => (
     </main>
   </div>
 )
-
-
-
-// http://photoswipe.com/
-// https://www.nationalgeographic.com/photography/photo-of-the-day/2018/10/india-mud-wrestling-kushti//
-// https://api.nasa.gov/planetary/apod?api_key=8dUEsh65unCXLDx00RqiRtURx5DNLPSRCtbsJ8v2&date=2018-10-14
