@@ -17,7 +17,8 @@ export const view = state => (
     </header>
     <main>
       <div className="container">
-
+        <button onclick={[Navigate, 'backward']}>Prev</button>
+        <button onclick={[Navigate, 'forward']}>Next</button>
         <h4>State: </h4>
         <pre>{JSON.stringify(state, null, 2)}</pre>
       </div>
