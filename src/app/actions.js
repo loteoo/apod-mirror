@@ -3,8 +3,8 @@
 // ==================
 
 
-// Sets the new item input value in the state
-export const setInputValue = (state, ev) => ({
+
+export const Navigate = (state, path) => ({
   ...state,
-  inputValue: ev.target.value
+  path
 })
