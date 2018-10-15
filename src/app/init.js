@@ -1,6 +1,13 @@
+
+import {FetchPicture} from './utils'
+
+let today = new Date().toISOString().split('T')[0]
+
 // Initial state of the app
-export const init = {
+export const init = [{
   path: '/',
-  currentDay: new Date().toISOString().split('T')[0],
+  displayedDate: today,
   pictures: {}
-}
+},
+  FetchPicture({date: today})
+]
