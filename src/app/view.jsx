@@ -17,12 +17,25 @@ export const view = state => (
     </header>
     <main>
       <div className="container">
+        {
+          state.pictures[state.path]
+          ? <Picture picture={state.pictures[state.path]} />
+          : <p>Loading...</p>
+        }
         <button onclick={[Navigate, -1]}>Prev</button>
-        <button onclick={[Navigate, 1]}>Next</button>
+        {state.path < state.today ? <button onclick={[Navigate, 1]}>Next</button> : null}
         <h4>State: </h4>
         <pre>{JSON.stringify(state, null, 2)}</pre>
       </div>
     </main>
+  </div>
+)
+
+
+const Picture = ({picture}) => (
+  <div className="picture">
+    <p>Title: {picture.title}</p>
+    <img src={picture.url} alt={picture.title}/>
   </div>
 )
 
