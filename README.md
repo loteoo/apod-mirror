@@ -1,5 +1,11 @@
 # APOD mirror SPA
 
+Original site:  
+https://apod.nasa.gov/apod/astropix.html
+
+SPA version:  
+https://loteoo.github.io/apod-mirror/
+
 
 ## Installation: 
 ```
