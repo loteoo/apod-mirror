@@ -11,3 +11,14 @@ export const FetchPicture =  (props) => ({
   },
   date: props.date,
 })
+
+
+
+export const relativeDateString = (dateStr, direction) => {
+  
+  let targetDate = new Date(dateStr);
+  targetDate.setDate(targetDate.getDate() + direction);
+
+  return targetDate.toISOString().split('T')[0];
+
+}

@@ -2,14 +2,14 @@
 // Global actions 
 // ==================
 
-import {FetchPicture} from './utils'
+import {FetchPicture, relativeDateString} from './utils'
 
 
 export const Navigate = (prevState, direction) => {
 
   const state = {
     ...prevState,
-    path: direction === 'forward' ? '2018-10-11' : '2018-10-10'
+    path: relativeDateString(prevState.path, direction)
   }
 
   return state.pictures[state.path]
