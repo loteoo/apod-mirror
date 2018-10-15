@@ -26,3 +26,9 @@ export const SetPicture = (state, {date, picture}) => ({
     [date]: picture
   }
 })
+
+
+export const ToggleSidebar = (state) => ({
+  ...state,
+  sidebarOpened: !state.sidebarOpened
+})
