@@ -7,37 +7,39 @@ import cc from 'classcat'
 
 // Import actions
 import {Navigate, ToggleSidebar} from './actions'
-import {LeftArrow, RightArrow} from './icons'
+import {LeftArrow, RightArrow, Expand, Close, Github} from './icons'
 
 // Root view
 export const view = state => (
   <div className={cc(['app', {'sidebar-opened': state.sidebarOpened}])}>
     <header>
-      <a onclick={ToggleSidebar}>Expand</a>
-      <a href="#">Github</a>
+      <a onclick={ToggleSidebar}><Expand /></a>
+      <a href="https://github.com/loteoo/apod-mirror" target="_blank"><Github /></a>
     </header>
-    <Picture picture={state.pictures[state.path] || {}} />
-    <button className="prev" onclick={[Navigate, -1]}><LeftArrow /></button>
-    {state.path < state.today ? <button className="next" onclick={[Navigate, 1]}><RightArrow /></button> : null}
-    <footer>
-      APOD website mirror
-    </footer>
+    <Picture picture={state.pictures[state.path] || {}} endReached={state.path >= state.today} />
   </div>
 )
 
 
-const Picture = ({picture}) => (
-  <main>
+const Picture = ({picture, endReached}) => (
+  <div className="picture">
     <aside>
-      <a onclick={ToggleSidebar}>Close</a>
+      <a onclick={ToggleSidebar}><Close /></a>
       <p>{picture.date}</p>
       <h2>{picture.title}</h2>
       <p>{picture.explanation}</p>
+      <p>{picture.copyright}</p>
     </aside>
-    <figure>
+    <main>
       <img src={picture.url} alt={picture.title}/>
-    </figure>
-  </main>
+      <button className="prev" onclick={[Navigate, -1]}><LeftArrow /></button>
+      {!endReached ? <button className="next" onclick={[Navigate, 1]}><RightArrow /></button> : null}
+      <footer>
+        <p><a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">APOD</a> website mirror</p>
+        <p>Built with <a href="https://github.com/jorgebucaran/hyperapp">Hyperapp 2.0</a> by <a href="https://github.com/loteoo" target="_blank">Alexandre Lotte</a></p>
+      </footer>
+    </main>
+  </div>
 )
 
 
