@@ -74,7 +74,10 @@ h5, h6 {
 a {
   cursor: pointer;
   text-decoration: underline;
-  color: var(--emphasis-text-color);
+  color: inherit;
+  &:hover {
+    color: var(--emphasis-text-color);
+  }
 }
 
 img {
@@ -149,11 +152,22 @@ svg {
       height: 100%;
     }
 
+    .prev,
+    .next {
+      position: absolute calc(50% - 2rem) auto auto auto;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
     .prev {
-      position: absolute 50% auto auto 1em;
+      left: 1rem;
     }
     .next {
-      position: absolute 50% 1em auto auto;
+      right: 1rem;
     }
     
     footer {
