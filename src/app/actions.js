@@ -3,7 +3,7 @@
 // ==================
 
 // Utilities
-import {FetchPicture, relativeDateString} from './utils'
+import {BatchEffects, FetchPicture, relativeDateString} from './utils'
 
 
 // Navigates backwards or forwards in time for the gallery
@@ -15,24 +15,43 @@ export const Navigate = (prevState, direction) => {
     path: relativeDateString(prevState.path, direction)
   }
 
-  // Conditionally trigger the fetch side effect
-  return state.pictures[state.path]
+  const dateMinusOne = relativeDateString(state.path, -1); 
+
+  // Conditionally add fetch effects in the action's return
+  return state.pictures[state.path] && state.pictures[dateMinusOne]
     ? state
-    : [state, FetchPicture({date: state.path})]
+    : state.pictures[state.path] && !state.pictures[dateMinusOne]
+      ? [
+        state,
+        FetchPicture({date: dateMinusOne})
+      ]
+      : !state.pictures[state.path] && state.pictures[dateMinusOne]
+        ? [
+          state,
+          FetchPicture({date: state.path})
+        ]
+        : [
+          state,
+          BatchEffects([
+            FetchPicture({date: state.path}),
+            FetchPicture({date: dateMinusOne})
+          ])
+        ]
 }
 
 
+
 // Sets the received picture in the state
-export const SetPicture = (state, {date, picture}) => ({
+export const SetPicture = ({pictures, ...state}, {date, picture}) => ({
   ...state,
   pictures: {
-    ...state.pictures,
+    ...pictures,
     [date]: picture
   }
 })
 
 // Inverts the sidebar opened status
-export const ToggleSidebar = (state) => ({
+export const ToggleSidebar = ({sidebarOpened, ...state}) => ({
   ...state,
-  sidebarOpened: !state.sidebarOpened
+  sidebarOpened: !sidebarOpened
 })

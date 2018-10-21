@@ -30,7 +30,7 @@ export const view = (
     <main>
       {
         picture.media_type === 'image'
-          ? <a href={picture.hdurl || picture.url} target="_blank"><img src={picture.url} alt={picture.title} /></a>
+          ? <a key={picture.date} href={picture.hdurl || picture.url} target="_blank"><img src={picture.url} alt={picture.title} /></a>
           : picture.media_type === 'video'
             ? <div className="youtube"><iframe width="560" height="315" src={picture.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
             : null
