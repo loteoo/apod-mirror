@@ -6,6 +6,10 @@ https://apod.nasa.gov/apod/astropix.html
 SPA version:  
 https://loteoo.github.io/apod-mirror/
 
+HTML:  **0.9 KB**
+CSS:  **1.1 KB**
+JS:  **4.7 KB**
+
 
 ## Installation: 
 ```
