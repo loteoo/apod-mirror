@@ -3,13 +3,14 @@ import {SetPicture} from './actions'
 
 // Batch effects utility
 const batchEffect = (props, dispatch) => 
-  props.effects.forEach(effect => effect.effect(effect, dispatch))
-
+  props.effects.forEach(effect => effect && effect.effect(effect, dispatch))
 
 export const BatchEffects = (effects) => ({
   effects,
   effect: batchEffect
 })
+
+
 
 
 // Fetch picture effect
@@ -31,6 +32,23 @@ export const FetchPicture =  (props) => ({
   date: props.date,
 })
 
+
+
+
+
+const hashchangeEffect = (props, dispatch) => {
+  const eventListener = event => dispatch(props.action, window.location.hash.substring(2) || relativeDateString(new Date().toISOString().split('T')[0], -1))
+  addEventListener("hashchange", eventListener)
+  return () => removeEventListener("hashchange", eventListener)
+}
+
+export const LocationChanged = props => ({
+  effect: hashchangeEffect,
+  action: props.action
+})
+
+
+
 // Returns a YYYY-MM-DD date string, incremented or decremented
 // by a specified amount of days (direction).
 export const relativeDateString = (dateStr, direction) => {
@@ -40,10 +58,10 @@ export const relativeDateString = (dateStr, direction) => {
 }
 
 // Takes in a YYYY-MM-DD date and returns it in a human format
-export const formatDateString = (dateStr) => (
+export const formatDateString = dateStr => (
   dateStr 
     ? (
-      new Date(dateStr).toLocaleDateString(navigator.language, {
+      new Date(relativeDateString(dateStr, 1)).toLocaleDateString(navigator.language, {
         year: 'numeric',
         month: 'long',
         day: 'numeric'

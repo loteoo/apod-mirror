@@ -77,30 +77,6 @@ a {
   color: var(--emphasis-text-color);
 }
 
-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem;
-  border: none;
-  color: inherit;
-  background-color: transparent;
-  text-align: center;
-  text-decoration: none; 
-  cursor: pointer;
-  &:hover {
-    color: var(--emphasis-text-color);
-  }
-  &:hover,
-  &:focus {
-    outline: 0;
-  }
-  &:disabled {
-    opacity: 0.25;
-    cursor: default;
-    pointer-events: none;
-  }
-}
-
 img {
   max-width: 100%;
 }

@@ -7,36 +7,36 @@ import {BatchEffects, FetchPicture, relativeDateString} from './utils'
 
 
 // Navigates backwards or forwards in time for the gallery
-export const Navigate = (prevState, direction) => {
+export const Navigate = (prevState, path) => {
 
   // Create our new state
   const state = {
     ...prevState,
-    path: relativeDateString(prevState.path, direction)
+    path
   }
 
-  const dateMinusOne = relativeDateString(state.path, -1); 
+  const dateMinusOne = relativeDateString(state.path, -1);
+  const datePlusOne = relativeDateString(state.path, 1);
+
+  const EffectsList = []
+
+  if (!state.pictures[state.path]) {
+    EffectsList.push(FetchPicture({date: state.path}))
+  }
+  if (!state.pictures[dateMinusOne]) {
+    EffectsList.push(FetchPicture({date: dateMinusOne}))
+  }
+  if (!state.pictures[datePlusOne] && state.today !== state.path) {
+    EffectsList.push(FetchPicture({date: datePlusOne}))
+  }
 
   // Conditionally add fetch effects in the action's return
-  return state.pictures[state.path] && state.pictures[dateMinusOne]
+  return state.pictures[state.path] && state.pictures[dateMinusOne] && state.pictures[datePlusOne]
     ? state
-    : state.pictures[state.path] && !state.pictures[dateMinusOne]
-      ? [
+    : [
         state,
-        FetchPicture({date: dateMinusOne})
+        BatchEffects(EffectsList)
       ]
-      : !state.pictures[state.path] && state.pictures[dateMinusOne]
-        ? [
-          state,
-          FetchPicture({date: state.path})
-        ]
-        : [
-          state,
-          BatchEffects([
-            FetchPicture({date: state.path}),
-            FetchPicture({date: dateMinusOne})
-          ])
-        ]
 }
 
 
