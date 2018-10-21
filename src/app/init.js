@@ -1,13 +1,13 @@
 
-import {FetchPicture} from './utils'
+import {FetchPicture, relativeDateString} from './utils'
 
-let today = new Date().toISOString().split('T')[0]
+let today = relativeDateString(new Date().toISOString().split('T')[0], -1)
 
 // Initial state of the app
 export const init = [{
   today,
   path: today,
-  sidebarOpened: true,
+  sidebarOpened: window.innerWidth > 640,
   pictures: {}
 },
   FetchPicture({date: today})
