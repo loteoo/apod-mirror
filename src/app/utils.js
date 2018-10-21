@@ -1,7 +1,7 @@
 
 import {SetPicture} from './actions'
 
-// Fetch action effect handler
+// Fetch picture effect
 export const FetchPicture =  (props) => ({
   effect: (props, dispatch) => {
     fetch(`https://api.nasa.gov/planetary/apod?date=${props.date}&api_key=8dUEsh65unCXLDx00RqiRtURx5DNLPSRCtbsJ8v2`)
@@ -11,7 +11,6 @@ export const FetchPicture =  (props) => ({
   },
   date: props.date,
 })
-
 
 // Returns a YYYY-MM-DD date string, incremented or decremented
 // by a specified amount of days (direction).

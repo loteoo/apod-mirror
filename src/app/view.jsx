@@ -10,7 +10,7 @@ import {LeftArrow, RightArrow, Expand, Close, Github} from './icons'
 // Root view
 export const view = (
   state,
-  picture = state.pictures[state.path],
+  picture = state.pictures[state.path] || {},
   endReached = state.path >= state.today
 ) => (
   <div className={'app' + (state.sidebarOpened ? ' sidebar-opened' : '')}>
@@ -20,25 +20,21 @@ export const view = (
     </header>
     <aside>
       <a onclick={ToggleSidebar}><Close /></a>
-      {
-        picture
-          ? (
-            <div className="content">
-              <p>{picture.date}</p>
-              <h2>{picture.title}</h2>
-              <p>{picture.explanation}</p>
-              <p>{picture.copyright}</p>
-            </div>
-          )
-          : (
-            <div className="loading">
-              Loading...
-            </div>
-          )
-      }
+      <div className="content">
+        <p>{picture.date}</p>
+        <h2>{picture.title}</h2>
+        <p>{picture.explanation}</p>
+        <p>{picture.copyright}</p>
+      </div>
     </aside>
     <main>
-      {picture ? <img src={picture.url} alt={picture.title}/> : <p>Loading...</p>}
+      {
+        picture.media_type === 'image'
+          ? <a href={picture.hdurl || picture.url} target="_blank"><img src={picture.url} alt={picture.title} /></a>
+          : picture.media_type === 'video'
+            ? <div className="youtube"><iframe width="560" height="315" src={picture.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+            : null
+      }
       <button className="prev" onclick={[Navigate, -1]}><LeftArrow /></button>
       {!endReached ? <button className="next" onclick={[Navigate, 1]}><RightArrow /></button> : null}
       <footer>
