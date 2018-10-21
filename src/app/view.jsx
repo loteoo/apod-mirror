@@ -6,6 +6,7 @@ import {h} from 'hyperapp'
 // Import actions
 import {Navigate, ToggleSidebar} from './actions'
 import {LeftArrow, RightArrow, Expand, Close, Github} from './icons'
+import {formatDateString} from './utils'
 
 // Root view
 export const view = (
@@ -21,10 +22,12 @@ export const view = (
     <aside>
       <a onclick={ToggleSidebar}><Close /></a>
       <div className="content">
-        <p>{picture.date}</p>
         <h2>{picture.title}</h2>
+        <h4>
+          {picture.copyright ? <span>{picture.copyright}, <br /></span> : null}
+          {formatDateString(picture.date)}
+        </h4>
         <p>{picture.explanation}</p>
-        <p>{picture.copyright}</p>
       </div>
     </aside>
     <main>

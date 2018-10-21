@@ -38,3 +38,16 @@ export const relativeDateString = (dateStr, direction) => {
   targetDate.setDate(targetDate.getDate() + direction);
   return targetDate.toISOString().split('T')[0];
 }
+
+// Takes in a YYYY-MM-DD date and returns it in a human format
+export const formatDateString = (dateStr) => (
+  dateStr 
+    ? (
+      new Date(dateStr).toLocaleDateString(navigator.language, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    )
+    : null
+)
