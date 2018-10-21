@@ -5,7 +5,7 @@ import {h} from 'hyperapp'
 
 // Import actions
 import {Navigate, ToggleSidebar} from './actions'
-import {LeftArrow, RightArrow, Expand, Close, Github} from './icons'
+import {LeftArrow, RightArrow, Info, Close, Github} from './icons'
 import {formatDateString} from './utils'
 
 // Root view
@@ -16,7 +16,7 @@ export const view = (
 ) => (
   <div className={'app' + (state.sidebarOpened ? ' sidebar-opened' : '')}>
     <header>
-      <a onclick={ToggleSidebar}><Expand /></a>
+      <a onclick={ToggleSidebar}><Info /></a>
       <a href="https://github.com/loteoo/apod-mirror" target="_blank"><Github /></a>
     </header>
     <aside>

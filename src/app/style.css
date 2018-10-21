@@ -32,8 +32,7 @@
 
 html {
   font-family: 'Open Sans', Arial, sans-serif;
-  font-size: responsive 12px 16px;
-  font-range: 420px 1280px;
+  font-size: 16px;
   color: var(--text-color);
   background-color: var(--background-color);
   -webkit-font-smoothing: antialiased;
