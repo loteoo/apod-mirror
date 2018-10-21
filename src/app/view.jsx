@@ -38,8 +38,8 @@ export const view = (
             ? <div className="youtube"><iframe width="560" height="315" src={picture.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
             : null
       }
-      <a className="prev" href={'/#/' + relativeDateString(state.path, -1)}><LeftArrow /></a>
-      {!endReached ? <a className="next" href={'/#/' + relativeDateString(state.path, 1)}><RightArrow /></a> : null}
+      <a className="prev" href={window.location.host + '/#/' + relativeDateString(state.path, -1)}><LeftArrow /></a>
+      {!endReached ? <a className="next" href={window.location.host + '/#/' + relativeDateString(state.path, 1)}><RightArrow /></a> : null}
       <footer>
         <p><a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">APOD</a> viewer SPA</p>
         <p>Built with <a href="https://github.com/jorgebucaran/hyperapp">Hyperapp 2.0</a> by <a href="https://github.com/loteoo" target="_blank">Alexandre Lotte</a></p>
