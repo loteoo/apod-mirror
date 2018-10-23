@@ -37,7 +37,7 @@ export const view = (
     <main>
       {
         !picture 
-          ? <p>Loading...</p>
+          ? <p>Fetching data...</p>
           : picture.media_type === 'image'
             ? <a key={picture.date} href={picture.hdurl || picture.url} target="_blank"><img src={picture.url} alt={picture.title} /></a>
             : picture.media_type === 'video'
@@ -47,8 +47,8 @@ export const view = (
       <a className="prev" href={window.location.pathname + '#/' + relativeDateString(state.path, -1)}><LeftArrow /></a>
       {!endReached ? <a className="next" href={window.location.pathname + '#/' + relativeDateString(state.path, 1)}><RightArrow /></a> : null}
       <footer>
-        <p><a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">APOD</a> viewer SPA</p>
-        <p>Built with <a href="https://github.com/jorgebucaran/hyperapp">Hyperapp 2.0</a> by <a href="https://github.com/loteoo" target="_blank">Alexandre Lotte</a></p>
+        <p><a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">APOD</a> viewer SPA — <a href="https://github.com/loteoo/apod-mirror" target="_blank">Source code</a></p>
+        <p>Built with <a href="https://github.com/jorgebucaran/hyperapp">Hyperapp 2.0</a> by <a href="https://github.com/loteoo" target="_blank">Alexandre Lotte</a>.</p>
       </footer>
     </main>
   </div>

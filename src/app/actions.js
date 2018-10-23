@@ -7,12 +7,17 @@ import {BatchEffects, FetchPicture, relativeDateString} from './utils'
 
 
 // Navigates backwards or forwards in time for the gallery
-export const Navigate = (prevState, path) => {
+export const Navigate = (prevState, path, prevDate) => {
 
   // Create our new state
   const state = {
     ...prevState,
-    path
+    path,
+    direction: path < prevDate 
+                ? 'left' 
+                : path > prevDate 
+                  ? 'right' 
+                  : 'none'
   }
 
   const dateMinusOne = relativeDateString(state.path, -1);

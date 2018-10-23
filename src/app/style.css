@@ -164,10 +164,10 @@ svg {
       }
     }
     .prev {
-      left: 1rem;
+      left: 0;
     }
     .next {
-      right: 1rem;
+      right: 0;
     }
     
     footer {

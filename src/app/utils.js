@@ -37,7 +37,12 @@ export const FetchPicture =  (props) => ({
 
 
 const hashchangeEffect = (props, dispatch) => {
-  const eventListener = event => dispatch(props.action, window.location.hash.substring(2) || relativeDateString(new Date().toISOString().split('T')[0], -1))
+  const eventListener = event => {
+    const fallback = relativeDateString(new Date().toISOString().split('T')[0], -1)
+    const newDate = window.location.hash.substring(2) || fallback
+    const prevDate = event.oldURL.substring(0, event.oldURL.indexOf("#/")) || fallback
+    dispatch(props.action, newDate, prevDate)
+  }
   addEventListener("hashchange", eventListener)
   return () => removeEventListener("hashchange", eventListener)
 }
