@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "apod-mirror",
-  "description": "Hyperapp PWA boilerplate",
+  "description": "APOD viewer",
   "author": "Alexandre Lotte",
   "license": "MIT",
   "scripts": {

@@ -1,6 +1,6 @@
 {
-  "short_name": "Hyperapp",
-  "name": "Hyperapp boilerplate",
+  "short_name": "APOD",
+  "name": "APOD viewer",
   "description": "APOD mirror SPA built with Hyperapp",
   "display": "fullscreen",
   "scope": "/",
