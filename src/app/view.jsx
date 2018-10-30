@@ -5,7 +5,7 @@ import {h} from 'hyperapp'
 
 // Import actions
 import {Navigate, ToggleSidebar} from './actions'
-import {LeftArrow, RightArrow, Info, Close, Github, External} from './icons'
+import {ChevronLeft, ChevronRight, ArrowRight, Close, Github, External} from './icons'
 import {formatDateString, relativeDateString} from './utils'
 
 // Root view
@@ -16,7 +16,7 @@ export const view = (
 ) => (
   <div className={'app' + (state.sidebarOpened ? ' sidebar-opened' : '')}>
     <header>
-      <a onclick={ToggleSidebar}><Info /></a>
+      <a onclick={ToggleSidebar}><ArrowRight /></a>
       <a href="https://github.com/loteoo/apod-mirror" target="_blank"><Github /></a>
     </header>
     <aside>
@@ -44,8 +44,8 @@ export const view = (
               ? <div className="youtube"><iframe width="560" height="315" src={picture.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
               : <p>Media not found</p>
       }
-      <a className="prev" href={window.location.pathname + '#/' + relativeDateString(state.path, -1)}><LeftArrow /></a>
-      {!endReached ? <a className="next" href={window.location.pathname + '#/' + relativeDateString(state.path, 1)}><RightArrow /></a> : null}
+      <a className="prev" href={window.location.pathname + '#/' + relativeDateString(state.path, -1)}><ChevronLeft /></a>
+      {!endReached ? <a className="next" href={window.location.pathname + '#/' + relativeDateString(state.path, 1)}><ChevronRight /></a> : null}
       <footer>
         <p><a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">APOD</a> viewer SPA — <a href="https://github.com/loteoo/apod-mirror" target="_blank">Source code</a></p>
         <p>Built with <a href="https://github.com/jorgebucaran/hyperapp">Hyperapp 2.0</a> by <a href="https://github.com/loteoo" target="_blank">Alexandre Lotte</a>.</p>
